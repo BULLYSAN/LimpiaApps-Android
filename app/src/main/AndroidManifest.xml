@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permiso especial: el usuario debe conceder manualmente "Acceso de uso".
+         Si no se concede, la app sigue funcionando, pero sin valorar días sin uso. -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+
+    <!-- En Android 11+ declaramos la visibilidad que necesitamos:
+         solo aplicaciones que tengan icono/lanzador visible para el usuario. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:label="LimpiaApps"
+        android:theme="@style/AppTheme"
+        android:icon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>

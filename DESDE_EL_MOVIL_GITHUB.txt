@@ -1,0 +1,51 @@
+LIMPIAAPPS - COMPILAR EL APK SOLO DESDE EL MOVIL
+================================================
+
+No necesitas PC, Android Studio, Gradle ni Android SDK instalados en el móvil.
+
+===== INICIO =====
+
+1. Desde Chrome en el móvil entra en GitHub e inicia sesión.
+
+2. Crea un repositorio nuevo, por ejemplo:
+   LimpiaApps-Android
+
+3. Sube TODO el contenido de esta carpeta al repositorio.
+   Es importante subir también la carpeta:
+   .github/workflows/
+
+4. Cuando los archivos estén en la rama main, abre en GitHub:
+   Actions
+
+5. Entra en:
+   Compilar APK LimpiaApps
+
+6. Si la compilación no se ha iniciado automáticamente, pulsa:
+   Run workflow
+   > Run workflow
+
+7. Abre la ejecución que aparece.
+
+8. Cuando todos los pasos estén en verde, baja hasta:
+   Artifacts
+
+9. Pulsa:
+   LimpiaApps-Android-APK
+
+10. GitHub descargará un ZIP. Dentro estarán:
+    LimpiaApps_Android_1.0.0_DEBUG.apk
+    LimpiaApps_Android_1.0.0_DEBUG.apk.sha256
+
+11. Extrae el ZIP en Android y pulsa el APK.
+
+12. Si Android lo solicita:
+    Ajustes > Permitir instalar aplicaciones desconocidas
+    para el navegador o gestor de archivos desde el que abras el APK.
+
+13. Instala LimpiaApps.
+
+===== FIN =====
+
+NOTA:
+El APK generado es DEBUG, adecuado para instalarlo y probarlo directamente.
+Para publicar en Google Play se debe generar una versión RELEASE/AAB firmada.

@@ -1,0 +1,60 @@
+name: Compilar APK LimpiaApps
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Generar APK Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v6
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Configurar Gradle 8.9
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.9'
+
+      - name: Preparar Android SDK 35
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Compilar APK Debug
+        shell: bash
+        run: |
+          gradle --no-daemon clean assembleDebug
+
+      - name: Comprobar APK
+        shell: bash
+        run: |
+          test -f app/build/outputs/apk/debug/app-debug.apk
+          cp app/build/outputs/apk/debug/app-debug.apk LimpiaApps_Android_1.0.0_DEBUG.apk
+          sha256sum LimpiaApps_Android_1.0.0_DEBUG.apk | tee LimpiaApps_Android_1.0.0_DEBUG.apk.sha256
+          ls -lh LimpiaApps_Android_1.0.0_DEBUG.apk
+
+      - name: Subir APK listo para descargar
+        uses: actions/upload-artifact@v5
+        with:
+          name: LimpiaApps-Android-APK
+          path: |
+            LimpiaApps_Android_1.0.0_DEBUG.apk
+            LimpiaApps_Android_1.0.0_DEBUG.apk.sha256
+          if-no-files-found: error
+          retention-days: 30

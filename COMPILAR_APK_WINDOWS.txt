@@ -1,0 +1,40 @@
+============================================================
+         LIMPIAAPPS ANDROID 1.0.0 - COMPILAR APK
+============================================================
+
+MÉTODO RECOMENDADO: ANDROID STUDIO
+
+===== INICIO =====
+
+1. Descomprime LimpiaApps_Android_1.0.0.zip
+
+2. Abre Android Studio.
+
+3. Pulsa:
+   Open
+
+4. Selecciona la carpeta:
+   LimpiaApps_Android_1.0.0
+
+5. Espera a que finalice "Gradle Sync".
+
+6. En el menú superior:
+   Build
+   > Build App Bundle(s) / APK(s)
+   > Build APK(s)
+
+7. Cuando aparezca "APK(s) generated successfully",
+   pulsa "locate".
+
+8. El APK debería estar en:
+   app\build\outputs\apk\debug\app-debug.apk
+
+===== FIN =====
+
+INSTALAR EN EL MÓVIL POR USB:
+
+===== INICIO =====
+
+adb install -r app\build\outputs\apk\debug\app-debug.apk
+
+===== FIN =====
